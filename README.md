@@ -54,13 +54,17 @@ so after deployment, the amount is paid to one randomly
 
 `clocked` borrower per `SEMESTER`, as in [Maren](https://youtube.com/clip/UgkxqTN7HrgUTmngIZrZqfEFUQaI7GM3ZuTo)ate.sol  
 "[been there]((https://mirror.xyz/quid.eth/LZ4pS8tVAAkZVSYqJWoihs19cdMhgWESsLr9dIhvL40)), done that, bought the  T-shirt," and .54%  
-of the `raised` was paid to LPs on UniV3. This means  
-to support entering or exiting from 357M supply of QD,  
+of the `raised` was paid to LPs. This means either: on  
+UNIv3, as a secondary market for exiting QD balances, 
 
-there will always be at least 2.7M available on any given  
-week while the supply of 271M is locked for 54 weeks 'til  
-`call` makes it possible for that amount to be redeemed.   
-`Plunge`s pay more if they want to lose money less often.  
+where there should always be at least 2.7M available any   
+week (while a supply of $271M is locked for 54 weeks 'til  
+`call` makes it possible for 357M QD to be redeemed)...  
+OR our LPs as in limited partners. Liquidated borrowers   
+are eligible to receive direct funding into controversial,  
+commercial crowd-endeavors (powered by `Āut` [Labs](https://docs.aut.id/v2/protocols-and-contracts/autid)).
+
+ 
 
 
 ### It's the  de*ferral* reserve (not...federal)...  
@@ -78,6 +82,7 @@ selected for a lottery: 777,742 QD sportsmanship
 award represented by 👕, passed back and forth  
 between `winner`s as the medium for  payouts...
 
+`Plunge`s may pay more to lose money less often:  
 2x APR is a surcharge for spreading liquidations  
 over time (pro-rated price), giving the position a  
 chance to recover as long as you keep paying the  

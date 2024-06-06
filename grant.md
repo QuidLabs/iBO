@@ -75,8 +75,8 @@ latest implementation is just over 1000 lines. The majority of the work for this
 
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
-| **0.** | License | GPLv3 Copyleft is the technique of granting freedoms over copies  with  the requirement that the same rights be preserved in *derivative* works. |
-| 1. | `call` widget | ETH which was deposited into `carry` may be freely  withdrawn. QD redemption (for sDAI at minimum or, potentially, also GHO) has rules based on when QD was minted.  |
+| 0.| License | GPLv3 Copyleft is the technique of granting freedoms over copies  with  the requirement that the same rights be preserved in *derivative* works. |
+| 1. | `call` widget | ETH which was deposited into `carry` may be freely  withdrawn. QD redemption (for sDAI/sFRAX/sUSDe) depends when QD was minted.  |
 | 2. | Vertical fader | All the way down by default, there should be one input slider for the magnitude of either long leverage (or short), and a toggle to switch between the two directions (including a toggle for `flip`: disabling or re-enabling 2x multiplier for APR).|
 | 3a. | Cross-fader for balance | This slider will represent how much of the user’s total QD is at risk (deposited in `work`), and the % in `carry` (by default 100% balance left in `carry`). |
 | 3b. | Cross-faders for voting | Shorts and longs are treated as separate risk budgets, so there is one APR target for each (combining them could be a worthy experiment, definitely better UX, though not necessarily optimal from an analytical standpoint). [Median](https://github.com/QuidLabs/iMO/blob/main/contracts/Marenate.sol#L91) APR (for long or short) is 12-27% (surge pricing). |
@@ -92,9 +92,9 @@ and seeing basic stats).
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
 | **0.** | License GPLv3 | Copyleft (same as previous milestone’s…of the public, by the public, for the public). We provide both code comments and instructions for running the code. |
-| 1. | NFT [marketplaces](http://polyone.io) + Fiat [off-ramps](https://www.flashy.cash/) + deployment | Enable payment with QD on various venues (e.g. for preferential pricing of NFTs). Providing real-world utility for QD  (beyond crypto trading) is further made possible through trusted partners for bridging into fiat. |
+| 1. | NFT marketplace |  Angel investors will bid with QD tokens for the chance to bankroll projects in exchange for joint-ownership of the future output resulting from their accompanying labor contracts. Potentially, we may partner with MetaLex Labs for the Ricardian element of said labor contracts. To recruit content-makers, we may also tap into our relationship with FairObserver.com |
 | 2. | Event Watcher (a.k.a. catcher in the ~~rye~~ [rights](https://en.wikipedia.org/wiki/Perfection_(law))) | Publish code that reads the blockchain for opportunities to liquidate (obtain perfection rights), so anyone can trigger `clocked`. Later, this code could be potentially integrated with ZigZag's off-chain order matcher for taking liquidated collateral out of QU!D protocol. |
 | 3. | [Twitter spaces](https://t.ly/B7pin) | Demonstrate the extent of readiness of the frontend by interacting with all protocol functions (minting is the only thing that may be done for the first 46 days after deployment). |
-| 4. | Multi-collat | Something like CCIP will enable re-using one QD balance across several deployed states of the core protocol on [multiple EVMs](https://twitter.com/Brechtpd/status/1688533026156744704) (each having their own domain-specific plugins, such as cNOTE on CANTO instead of sDAI). |
+| 4. | Multi-collat | Something like CCIP will enable re-using one QD balance across several deployed states of the core protocol on [multiple EVMs](https://twitter.com/Brechtpd/status/1688533026156744704) (each having their own domain-specific plugins, such as cNOTE on CANTO or ). |
 | 5. |  Profile Preferences | Advancing on frontend progress from milestone 1, users should have the ability to pull custom insights into their trading dashboard. This should include push notifications based on more data feeds (to better inform trading decisions). Over-bought / over-sold signaling involves a [handful of TA indicators](https://github.com/QuidLabs/bnbot/blob/main/Bot.py#L366). Other kinds of insights in addition to TA indicators will be explored.  |
 
