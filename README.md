@@ -44,8 +44,7 @@ Foundation's [swappable](https://twitter.com/guil_lambert/status/177242385331621
 perp form, enhanced: "yesterday's price is not today's  
 price." 30% of [PCV](https://gist.github.com/0xngmi/c92ce3fce377a0e72c1e90052db98bf1?permalink_comment_id=5071272#gistcomment-5071272) pays APR out-of-pocket (adds ETH  
 to `wind.debit`); according to [Excel](https://docs.google.com/spreadsheets/d/1uBG8jJGNCgQArKm4FlcmNuXb1cspG6-PRcDoFaRvQws/), "in the world of  
-
-dollars, [QD] ain't nothin' but a quarter 🪙," for plugging  
+dollars, [QD] ain't nothin' but a quarter 🪙," to plug a 
 
 a 25% hole in SCR.
  QD is only minted for 46 days (of Lent),  
