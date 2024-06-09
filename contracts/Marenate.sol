@@ -59,8 +59,8 @@ contract Marenate is
     mapping(uint => uint) public totalsUSDC; // week # -> liquidity
     uint public liquidityUSDC; // in UniV3 liquidity units
     uint public maxUSDC; // in the same units
-
     address[] public owners;
+
     mapping(address => bool) public isOwner;
     mapping(uint => uint) public totalsETH; // week # -> liquidity
     uint public liquidityETH; // for the ETH<>QD pool

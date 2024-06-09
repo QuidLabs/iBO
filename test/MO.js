@@ -188,25 +188,15 @@ describe("Moulinette contract", function () {
     // }); 
     
 
-    // it("Test liquidate (no deux)", async function () { 
+    // it("Test liquidate (no clutch)", async function () { 
     //     const { sDAI, MO, owner, addr1, addr2, addr3,
     //         addr4, addr5, currentTime } = await loadFixture(deployAndMintMOFixture)
         
         
-    // }); 
-    
-    // it("Test liquidate (with deux, but no clutch)", async function () { 
-    //     const { sDAI, MO, owner, addr1, addr2, addr3,
-    //         addr4, addr5, currentTime } = await loadFixture(deployAndMintMOFixture)
-        
+    // });     
         
     // });    
 
-    // it("Test liquidate (with deux, AND clutch)", async function () { 
-    //     const { sDAI, MO, owner, addr1, addr2, addr3,
-    //         addr4, addr5, currentTime } = await loadFixture(deployAndMintMOFixture)
-
-        
     // });    
 
     // it("Test call (take profits i.e. redeem QD for sDAI)", async function () { 

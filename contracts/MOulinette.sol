@@ -13,18 +13,25 @@ interface IMarenate {
 }
 
 contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
-    address constant public SFRAX = 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32; // TODO this is FRAX not sFRAX
+    // TODO if a FRAX balance is detected, frontend should automatically wrap into sFRAX and give allowance to mint()
+    // address constant public FRAX = 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32; 
+    // same for USDE and DAI
+    // address constant public USDE = 0x4c9EDD5852cd905f086C759E8383e09bff1E68B3;
     address constant public SDAI = 0x83F20F44975D03b1b09e64809B757c47f942BEeA;
-    address constant public USDE = 0x4c9EDD5852cd905f086C759E8383e09bff1E68B3; // TODO this is USDe not sUSDe
+    address constant public SUSDE = 0x9D39A5DE30e57443BfF2A8307A4256c8797A3497;
+    address constant public SFRAX = 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32;
+    
     address constant public QUID = 0x42cc020Ef5e9681364ABB5aba26F39626F1874A4;
     mapping(address => Pod) public _maturing; uint constant public WAD = 1e18; 
     uint constant public MAX_PER_DAY = 7_777_777 * WAD; // supply cap
-    uint constant public TARGET = 35700 * STACK; // !MO mint target
+    uint constant public TARGET = 357 * BAG; // !MO mint target
     uint constant public START_PRICE = 53 * PENNY; // .54 actually
     uint constant public LENT = 46 days; // ends on the 47th day
+
     uint constant public STACK = C_NOTE * 100;
     uint constant public C_NOTE = 100 * WAD; 
     uint constant public PENNY = WAD / 100;
+    uint constant public BAG = STACK * 100;
     uint constant public IVERSON = 76; // 76ers...
     uint constant public MO_CUT = 99 * PENNY / 10; 
     uint constant public MO_FEE = 22 * PENNY / 10; 
@@ -73,7 +80,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     constructor(address _sdai) ERC20("QU!Dao", "QD") { 
         mock = _sdai;
         _MO[0].start = block.timestamp; 
-        // _MO[0].start = 1717777777; 
+        // _MO[0].start = 1718888888; 
     }
     event Minted (address indexed reciever, uint cost_in_usd, uint amt);
     // Events are emitted, so only when we emit profits
@@ -96,7 +103,10 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
             _PRICE = price;
         }
     }
-     // TODO comment out after finish testing, and uncomment in constructor
+    
+    
+    
+    // TODO comment out after finish testing, and uncomment in constructor
     function get_price(bool eth) external view returns (uint) { // set ETH price in USD
         if (eth) {
             return _ETH_PRICE;
@@ -108,7 +118,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
    
     function _valid_token(address token) internal {
         require(token == SFRAX || token == SDAI 
-        || token == USDE, "MO::bad address"); // mint 
+        || token == SUSDE, "MO::bad address"); // mint 
         // or call may take as input or output these
     }
 
@@ -707,7 +717,8 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     function owe(uint amount, bool short) external payable { // amount is in QD 
         uint ratio = _MO[SEMESTER].locked * 100 / _MO[SEMESTER].minted; // % backing
         require(block.timestamp >= _MO[0].start + LENT, "MO::owe: early"); 
-        require(ratio > IVERSON, "MO::owe: under-backed");
+        require(ratio > IVERSON && _MO[SEMESTER].minted >= TARGET / 100, 
+        "MO::owe: under-backed");
         uint debit; uint credit; 
         uint xag_price = _get_price(false);
         uint eth_price = _get_price(true);

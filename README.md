@@ -4,20 +4,20 @@
 The word "dollar" originally referred to a ([silver](https://www.zerohedge.com/markets/why-powerful-silver-bull-market-may-be-ahead))  
 "piece of eight". Today a significant portion of $  
 usage across lending markets comes from `carry`  
-trades between assets and their derivatives. We
+trades between assets and their derivatives. By
 
-reduced all the variables involved, so you end up  
+reducing all the variables involved, we end up  
 with a system that is quite basic, increasing the   
 chances that it's resistant to all types of attacks.
 
-There's two types of cash-settled `dues`: `long` or  
+There's 2 types of cash-settled `dues`: `long` or  
 `short` (*Itchy and Scratchy* as synthetic `credit`  
-and `debit` in [*CatDog*](https://x.com/QuidMint/status/1786703126470222054)), "you're burning up...I'm  
-cooling down...you're [blind](https://www.investopedia.com/terms/b/blind-entry.asp)...I [see](https://docs.google.com/document/d/1fD1_rP8GonSUHyRXENDudlzBkkTcAsN7L9IiTrxEuAY/edit)" reductions in  
+and `debit` in [*CatDog*](https://x.com/QuidMint/status/1786703126470222054)), "you're burnin' up...I'm  
+coolin' down...you're [blind](https://www.investopedia.com/terms/b/blind-entry.asp)...I [see](https://docs.google.com/document/d/1fD1_rP8GonSUHyRXENDudlzBkkTcAsN7L9IiTrxEuAY/edit)" reductions in  
 
 fixed costs accumulate, variable costs amplified  
 by volume..."walked in the kitchen; found a `Pod`  
-to `Piscine`...[Nobody's](https://x.com/QuidMint/status/1788581681693106680) satisfied 'til they mama,"  
+to `Piscine`...[Nobody's](https://x.com/QuidMint/status/1788581681693106680) satisfied 'til they [mama](),"  
 this [transmission](https://en.wikipedia.org/wiki/Intercarrier_method) coming to [mix](https://youtu.be/ndQM3kVb06I) under-collat with  
 over-collat...I've got a [cup](https://www.youtube.com/clip/UgkxD0PZbIFBnRlmN6JwqGfKBOTw_OR7j1u4) of your [time](https://www.youtube.com/clip/UgkxIOebF-ScgdWWR7Flp__iDVeG4L22y-PK) value of 
 
@@ -54,18 +54,7 @@ so after deployment, the amount is paid to one randomly
 
 `clocked` borrower per `SEMESTER`, as in [Maren](https://youtube.com/clip/UgkxqTN7HrgUTmngIZrZqfEFUQaI7GM3ZuTo)ate.sol  
 "[been there]((https://mirror.xyz/quid.eth/LZ4pS8tVAAkZVSYqJWoihs19cdMhgWESsLr9dIhvL40)), done that, bought the  T-shirt," and .54%  
-of the `raised` was paid to LPs. This means either: on  
-UNIv3, as a secondary market for exiting QD balances, 
-
-where there should always be at least 2.7M available any   
-week (while a supply of $271M is locked for 54 weeks 'til  
-`call` makes it possible for 357M QD to be redeemed)...  
-OR our LPs as in limited partners. Liquidated borrowers   
-are eligible to receive direct funding into controversial,  
-commercial crowd-endeavors (powered by `Āut` [Labs](https://docs.aut.id/v2/protocols-and-contracts/autid)).
-
- 
-
+of the `raised` was retained for LPing on Uniswap v3.  
 
 ### It's the  de*ferral* reserve (not...federal)...  
 "You never count your money...while you're sittin'...  
