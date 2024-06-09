@@ -25,8 +25,8 @@ for Liquidity Management and *"Derivatives"*
 **Payment address**: `quid.eth`    
 
 Arbitrum's chainId starts with  
-42, public keys are 42 symbols.  
-`quid.eth`'s withs with 42 ends  
+42, public keys are 42 symbols...  
+`quid.eth`'s starts with 42; ends  
 with 4A4, so we built gilts as  
 a sort of simplified ERC404:   
 
