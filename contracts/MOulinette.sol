@@ -24,7 +24,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     address constant public QUID = 0x42cc020Ef5e9681364ABB5aba26F39626F1874A4;
     mapping(address => Pod) public _maturing; uint constant public WAD = 1e18; 
     uint constant public MAX_PER_DAY = 7_777_777 * WAD; // supply cap
-    uint constant public TARGET = 357 * BAG; // !MO mint target
+    uint constant public TARGET = 357 * BAG; // !MO mint target...
     uint constant public START_PRICE = 53 * PENNY; // .54 actually
     uint constant public LENT = 46 days; // ends on the 47th day
 
@@ -35,7 +35,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     uint constant public IVERSON = 76; // 76ers...
     uint constant public MO_CUT = 99 * PENNY / 10; 
     uint constant public MO_FEE = 22 * PENNY / 10; 
-    uint constant public MIN_CR = WAD + 3 * MIN_APR; 
+    uint constant public MIN_CR = WAD + MIN_APR; 
     uint constant public MIN_APR = 120000000000000000;
     Offering[16] public _MO; // one !MO per 6 months
     mapping(address => uint[16]) paid; // in stables
@@ -103,8 +103,6 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
             _PRICE = price;
         }
     }
-    
-    
     
     // TODO comment out after finish testing, and uncomment in constructor
     function get_price(bool eth) external view returns (uint) { // set ETH price in USD
@@ -302,8 +300,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 ((block.timestamp - plunge.last) / 1 hours) 
                 * balanceOf(addr) / WAD
             ); 
-            
-
+        
             // carry.credit; // is subtracted from 
             // rebalance fee targets (governance)
             if (plunge.dues.long.credit != 0) { 
@@ -662,6 +659,8 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                     work.short.debit, "MO::call");
             IERC20(mock).transfer(_msgSender(), paying);
             // IERC20(token).transfer(_msgSender(), paying); // TODO uncomment
+
+            // TODO maximum redeemable QD per day is MAX_PER_DAY
         }
     } 
 
@@ -684,7 +683,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 wind.credit += amount; // the debts associated with QD
                 // balances belong to everyone, not to any individual;
                 // amount decremented by APR payments in QD (or call)
-                uint fee = MO_FEE * amount / WAD; // .22% = 777742 QD
+                uint fee = MO_FEE * amount / WAD; // up to 777742 QD
                 _maturing[beneficiary].credit += amount - fee; // QD
                 // _mint(address(MA), fee); // TODO uncomment
 
@@ -694,7 +693,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 emit Minted(beneficiary, amount - fee, cost); 
             } else if (block.timestamp >= _MO[SEMESTER].start + LENT + 144 days) { // 6 months
                 // amount is disregarded for this part of the control flow (just resets iMO)
-                uint cut = _MO[SEMESTER].locked * MO_CUT / WAD; // .99% (up to 2699973 bucks)
+                uint cut = _MO[SEMESTER].locked * MO_CUT / WAD; // .99% (up to 2,699,973)...
                 _MO[SEMESTER].locked -= cut; carry.credit -= cut;
                 // require(IERC20(token).transfer(address(MA), cut), "MO::mint: cut"); // TODO uncomment
                 if (SEMESTER < 15) { // "same level...the same 
