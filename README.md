@@ -53,11 +53,9 @@ deployment, said amount is paid to 1 lucky, `clocked`
 
 `winner` per `SEMESTER`, [Maren](https://youtube.com/clip/UgkxqTN7HrgUTmngIZrZqfEFUQaI7GM3ZuTo)ate.sol "[been there]((https://mirror.xyz/quid.eth/LZ4pS8tVAAkZVSYqJWoihs19cdMhgWESsLr9dIhvL40))...  
 done that, bought the T-shirt," and .99% of `raised`  
-was retained for LPing on Uniswap v3 for the 1st half  
-of the year, then split four ways: 1/4 for maintenance,    
-1/2 gold prize for some community bounty, 1/4 silver.  
-If the community produces no satisfatory output, the  
-funds will continue to be used in Uni LPing by default.
+was retained: .54% for LPing on Uniswap v3, .45%    
+gets split through a community bounty (organizers  
+get a quarter, ditto for silver prize, gold gets half)...
 
 ### It's the  de*ferral* reserve (not...federal)...  
 "You never count your money...while you're sittin'...  
