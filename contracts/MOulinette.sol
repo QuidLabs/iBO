@@ -712,6 +712,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 delete paid[_msgSender()][SEMESTER - 1];
             }
         }
+        // TODO re-start MO and apply the funds instead of re-funding them
     }
 
     function owe(uint amount, bool short) external payable { // amount is in QD 
@@ -720,6 +721,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
         require(ratio > IVERSON && _MO[SEMESTER].minted >= TARGET / 100, 
         "MO::owe: under-backed");
         uint debit; uint credit; 
+        
         uint xag_price = _get_price(false);
         uint eth_price = _get_price(true);
         Plunge memory plunge = _fetch(_msgSender(), xag_price, 
