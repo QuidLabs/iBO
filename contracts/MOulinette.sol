@@ -251,9 +251,10 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 0 : block.timestamp - plunge.dues.short.debit; 
             if (plunge.dues.clutch) { // clutch += fee; 
                 // 144x per day is (24 hours * 60 minutes) / 10 minutes
-                clutch = (MIN_APR / 1000) * _work.debit / WAD; // 1.3% per day
+                // spreads the liquidation over 46 days, 2.17% per day
+                clutch = (MIN_APR / 795) * _work.debit / WAD; 
             }   (_work, _eth, folded) = _charge(addr, _eth,
-                 _work, price, time, clutch, true); 
+                _work, price, time, clutch, true); 
             if (folded) { // clutch == 1 flips the debt
                 // if (clutch == 1) { plunge.dues.short.debit = 0;
                 //     plunge.work.short.credit = 0;
@@ -274,7 +275,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                     0 : block.timestamp - plunge.dues.long.debit; 
                 if (plunge.dues.clutch) { // clutch += fee;
                     // 144x per day is (24 hours * 60 minutes) / 10 minutes
-                     clutch += (MIN_APR / 1000) * _work.debit / WAD;
+                    clutch += (MIN_APR / 795) * _work.debit / WAD;
                 }   (_work, _eth, folded) = _charge(addr, _eth,
                     _work, price, time, clutch, false); 
                 if (folded) { // festina...lent...eh? make haste

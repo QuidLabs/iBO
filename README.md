@@ -9,6 +9,7 @@ reducing all the variables involved, we end up...
 
 with a system that is quite basic, increasing the   
 chances that it's resistant to all types of attacks.  
+
 "The answer's not in the box, it's in the [basket]."     
 One example of "tertrium quid" is between gold  
 and silver: choose which one you `owe` for, with
@@ -37,22 +38,26 @@ get" `clocked`..."simmer down [if] lookin' too hot."
 
 Liquidations are optional (for the less risk-averse)...  
 seeing over (not over-siezing) QuidMint Foundation  
+
 "it's not a performance, it's a ~~ritual~~" perp form that's  
 enhanced with [swappable](https://twitter.com/guil_lambert/status/1772423853316219051) trade-offs, sweat equity or  
 [compensation](https://www.tabers.com/tabersonline/view/Tabers-Dictionary/730522/all/compensation). "yesterday's price is not today's  price."  
 
-30% of [PCV](https://gist.github.com/0xngmi/c92ce3fce377a0e72c1e90052db98bf1?permalink_comment_id=5071272#gistcomment-5071272) pays APR out-of-pocket (adds ETH to   
-`wind.debit`); according to [Excel](https://docs.google.com/spreadsheets/d/1uBG8jJGNCgQArKm4FlcmNuXb1cspG6-PRcDoFaRvQws/), "in the world of  
-dollars, [QD] ain't nothin' but a quarter 🪙," to plug  
+Diet Coke contains 46 mg of caffeine, QD gets minted  
+for 46 days (of Lent), 30% of [PCV](https://gist.github.com/0xngmi/c92ce3fce377a0e72c1e90052db98bf1?permalink_comment_id=5071272#gistcomment-5071272) pays APR  according  
+to [Excel](https://docs.google.com/spreadsheets/d/1uBG8jJGNCgQArKm4FlcmNuXb1cspG6-PRcDoFaRvQws/), "in the world of dollars, [QD] ain't nothin' but  
 
-a 25% gap in SCR.
- QD getsminted for 46 days (of Lent),  
-2x per year, for 8 years; .22% QD is the cost to start-up,  
-so after deployment, the amount is paid to one randomly  
+a quarter 🪙," plugging  a 25% gap in SCR. 2x per year,  
+for 8 years; .22% QD is the cost to start-up. Following  
+deployment, said amount is paid to 1 lucky, `clocked` 
 
-`clocked` borrower per `SEMESTER`, as in [Maren](https://youtube.com/clip/UgkxqTN7HrgUTmngIZrZqfEFUQaI7GM3ZuTo)ate.sol  
-"[been there]((https://mirror.xyz/quid.eth/LZ4pS8tVAAkZVSYqJWoihs19cdMhgWESsLr9dIhvL40)), done that, bought the T-shirt," and .99%  
-of the `raised` was retained for LPing on Uniswap v3.
+`winner` per `SEMESTER`, [Maren](https://youtube.com/clip/UgkxqTN7HrgUTmngIZrZqfEFUQaI7GM3ZuTo)ate.sol "[been there]((https://mirror.xyz/quid.eth/LZ4pS8tVAAkZVSYqJWoihs19cdMhgWESsLr9dIhvL40))...  
+done that, bought the T-shirt," and .99% of `raised`  
+was retained for LPing on Uniswap v3 for the 1st half  
+of the year, then split four ways: 1/4 for maintenance,    
+1/2 gold prize for some community bounty, 1/4 silver.  
+If the community produces no satisfatory output, the  
+funds will continue to be used in Uni LPing by default.
 
 ### It's the  de*ferral* reserve (not...federal)...  
 "You never count your money...while you're sittin'...  
