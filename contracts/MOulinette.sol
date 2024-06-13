@@ -590,6 +590,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
             if (plunge.work.short.credit > 0) {
                 uint xag_in_usd = _ratio(plunge.work.short.credit, xag_price, WAD);
                 if (xag_in_usd > eth_in_usd) {
+                    // TODO account for eth_in_usd reduction in  plunge.work.short.credit
                     delta = xag_in_usd - eth_in_usd; // value of credit - msg.value
                     eth_in_usd = _ratio(most, eth_price, WAD); // value of already deposited ETH
                     attached = _min(eth_in_usd, delta); // re-using / re-purposing the variable "attached" 
@@ -614,10 +615,9 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 delta = _ratio(WAD, eth_in_usd, xag_price);
                 work.long.credit += delta; plunge.work.short.credit += delta;
             }
-            else {
+            else { carry.debit += attached;
                 Plunges[_msgSender()].eth -= most;
                 Plunges[beneficiary].eth += amount;
-                carry.debit += attached;
             }  
         }
         Plunges[beneficiary] = plunge;

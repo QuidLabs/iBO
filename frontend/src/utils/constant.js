@@ -1,7 +1,7 @@
 
 // TODO replace address
-export const addressQD = '0x581773504cAFA058EbD1A0f034611904FfB42895';
-export const addressSDAI = '0xc43033886fcc8aB9980212bD1dDaC3cF778804a5';
+export const addressQD = '0x04a93cbA8b28BfB5740eA9055c614ad8099C32C8';
+export const addressSDAI = '0x7265AE505c9b45903F6cc6e0934E092d19D38d69';
 
 // TODO replace constructor
 // {
@@ -183,6 +183,19 @@ export const QUID = [
     ],
     "name": "Voted",
     "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "BAG",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -374,6 +387,19 @@ export const QUID = [
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "SUSDE",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -667,7 +693,13 @@ export const QUID = [
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "eth",
+        "type": "bool"
+      }
+    ],
     "name": "get_price",
     "outputs": [
       {
@@ -843,12 +875,7 @@ export const QUID = [
       },
       {
         "internalType": "bool",
-        "name": "_eth",
-        "type": "bool"
-      },
-      {
-        "internalType": "bool",
-        "name": "short",
+        "name": "eth",
         "type": "bool"
       }
     ],
@@ -922,7 +949,20 @@ export const QUID = [
         "type": "uint256"
       }
     ],
-    "name": "set_price",
+    "name": "set_price_eth",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
+    ],
+    "name": "set_price_xag",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1285,11 +1325,6 @@ export const SDAI = [
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "who",
-        "type": "address"
-      },
       {
         "internalType": "uint256",
         "name": "amount",
