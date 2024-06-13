@@ -1,11 +1,10 @@
 
-## The Silva Method (*i*n *M*y *O*ption)
+## Get SOL exposure on Ethereum
 
-The word "dollar" originally referred to a ([silver](https://www.zerohedge.com/markets/why-powerful-silver-bull-market-may-be-ahead))  
-piece of 8. "Walked in the kitchen; found a `Pod`  
-to `Piscine`...[Nobody's](https://x.com/QuidMint/status/1788581681693106680) satisfied 'til," the value  
-of accounts payable (USDe, DAI, FRAX, USDM)  
-matches that of accounts receivable (QD credit).
+"Walked in the kitchen; found a `Pod`  to `Piscine`.  
+[Nobody's](https://x.com/QuidMint/status/1788581681693106680) satisfied 'til," value  of accounts payable  
+(USDe, DAI, FRAX, USDM) is as that of accounts  
+receivable (QD credit extended)...100% backed.
 
 "The answer's not in the box, it's in the [basket]...  
 it's not a performance, it's a ~~ritual~~" perp form, but  

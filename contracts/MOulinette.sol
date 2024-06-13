@@ -51,7 +51,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
         address[] owned;
     }  uint public SEMESTER; // interMittent Offering (a.k.a !MO)
     uint internal _ETH_PRICE; // TODO comment out when finish testing
-    uint internal _PRICE; // TODO comment out when finish testing
+    uint internal _SOL_PRICE; // TODO comment out when finish testing
     uint internal _POINTS; // used in weights (medianiser); call() 
     struct Pod { // used in Pools (incl. individual Plunges')...
         uint credit; // in wind...this is hamsin (heat wave)...
@@ -71,7 +71,8 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     Pod public carry; // chop wind, carry liquidity 
     struct Plunge { // pledge to plunge into work...
         uint last; // timestamp of last state update
-        Piscine work; // leverage (long OR short)...
+        // "Work is love made visible" ~ Kahlil Gibran
+        Piscine work; // aka loverage (long OR short)
         Owe dues; // all kinds of utility variables
         uint eth; // Marvel's (pet) Rock of Eternity
     }   mapping (address => Plunge) Plunges; 
@@ -102,7 +103,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
         _ETH_PRICE = price;
     }
     function set_price_xag(uint price) external onlyOwner { // set ETH price in USD
-        _PRICE = price;
+        _SOL_PRICE = price;
     }
     
     // TODO comment out after finish testing, and uncomment in constructor
@@ -111,7 +112,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
             return _ETH_PRICE;
         }
         else {
-            return _PRICE;
+            return _SOL_PRICE;
         }
     }
    
@@ -216,7 +217,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
    
     function _get_price(bool eth) internal returns (uint) {
         if (eth && _ETH_PRICE != 0)  { return _ETH_PRICE; } // TODO comment when done testing
-        else if (!eth && _PRICE != 0) { return _PRICE; } // TODO comment when done testing
+        else if (!eth && _SOL_PRICE != 0) { return _SOL_PRICE; } // TODO comment when done testing
         else { return MA.getPrice(eth); }
     }
    
