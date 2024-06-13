@@ -16,8 +16,10 @@ describe("Moulinette contract", function () {
         const MO = await ethers.deployContract("Moulinette", [sDAI.target]);
         await MO.waitForDeployment()
 
-        const price = '2900000000000000000000'
-        await MO.connect(owner).set_price(price)
+        const eth_price = '2900000000000000000000'
+        const xag_price = '29000000000000000000'
+        await MO.connect(owner).set_price_eth(eth_price)
+        await MO.connect(owner).set_price_xag(xag_price)
         // const contractPrice = await MO.get_price()
         // expect(contractPrice).to.equal(price)
 
@@ -122,12 +124,12 @@ describe("Moulinette contract", function () {
         expect(balanceAfter).to.be.above(balanceBefore) // refund (not enough QD minted)
     });
 
-    it("Test put ETH (then withdraw)", async function () { 
+    it("Test put ETH (not into work) then withdraw", async function () { 
         const { sDAI, MO, owner, addr1, addr2 } = await loadFixture(deployFixture)
         const balanceBefore = await ethers.provider.getBalance(addr1)
         const amt = '5000000000000000000'
 
-        await MO.connect(addr1).put(addr1, amt, true, true, { value: amt })
+        await MO.connect(addr1).put(addr1, amt, true, { value: amt })
         const balanceAfter = await ethers.provider.getBalance(addr1)
         const delta = balanceBefore - balanceAfter // gas cost 150055889475635
 
@@ -165,9 +167,9 @@ describe("Moulinette contract", function () {
         console.log('in_work', in_work)
 
         // we never minted any QD to addr1
-        await expect(MO.connect(addr1).put(addr2, amt, false, false)).to.be.revertedWith("ERC20: transfer amount exceeds balance")
+        await expect(MO.connect(addr1).put(addr2, amt, false)).to.be.revertedWith("ERC20: transfer amount exceeds balance")
 
-        await MO.connect(addr3).put(addr2, amt, false, false)
+        await MO.connect(addr3).put(addr2, amt, false)
 
         in_carry_after = await MO.carry()
         console.log('AFTER_in_carry_after', in_carry_after)

@@ -241,6 +241,8 @@ contract Marenate is
         emit SetMaxTotalETH(_newMaxTotalETH);
     }
 
+    // TODO pack available tokens into UniV3, and unpack
+
     function submitTransfer(address _to, uint _value, 
         address _token) public onlyOwner {
         require(_token == MO.SFRAX() || _token == MO.SDAI(), "MO::bad address");

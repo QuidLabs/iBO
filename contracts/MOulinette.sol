@@ -12,6 +12,7 @@ interface IMarenate {
     uint old_stake, uint old_vote, bool short) external; 
 }
 
+// 
 contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     // TODO if a FRAX balance is detected, frontend should automatically wrap into sFRAX and give allowance to mint()
     // address constant public FRAX = 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32; 
@@ -23,6 +24,9 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     
     address constant public QUID = 0x42cc020Ef5e9681364ABB5aba26F39626F1874A4;
     mapping(address => Pod) public _maturing; uint constant public WAD = 1e18; 
+    // WAD is a naming convention inherited from DAI; consider it another way
+    // to pronounce WHAT, which is "quid" translated from Latin: inspired by 
+    // the watt, a measure of the rate of chi transfer per unit of time
     uint constant public MAX_PER_DAY = 7_777_777 * WAD; // supply cap
     uint constant public TARGET = 357 * BAG; // !MO mint target...
     uint constant public START_PRICE = 53 * PENNY; // .54 actually
@@ -35,7 +39,8 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     uint constant public IVERSON = 76; // 76ers...
     uint constant public MO_CUT = 99 * PENNY / 10; 
     uint constant public MO_FEE = 22 * PENNY / 10; 
-    uint constant public MIN_CR = WAD + MIN_APR; 
+    
+    uint constant public MIN_CR = WAD + MIN_APR; // 112
     uint constant public MIN_APR = 120000000000000000;
     Offering[16] public _MO; // one !MO per 6 months
     mapping(address => uint[16]) paid; // in stables
@@ -51,17 +56,13 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     struct Pod { // used in Pools (incl. individual Plunges')...
         uint credit; // in wind...this is hamsin (heat wave)...
         // "sometimes all I think about's you" ~ Glass Animals
-        uint debit; // in wind this is ETH frozen in Marenate
+        uint debit; // in wind this is ETH frozen in UniV3 LP 
     }  // credit used for fee voting; debit for fee charging...
     struct Owe { uint points; // time-weighted _balances QD credit 
         Pod long; // debit = last time of long APR payment
         Pod short; // debit = last time of short APR payment
         bool clutch; // pro-rated _unwind ✌🏻xAPR peace of mind
-        // "we freeze it and own it...squeeze it and hold it:
-        // something European chromed out with the clutch...
-        // glaciers have melted to the see...I wish the tide 
-        // would take me over...I've been down on my knees
-        // and you just keep on getting closer...go slow"
+        // "we freeze it and own it...squeeze it and hold it"
     }  
     struct Piscine { Pod long; Pod short; }
     /* The 1st part is called "The Pledge"... 
@@ -95,13 +96,13 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     function _min(uint _a, uint _b) internal pure returns (uint) {
         return (_a < _b) ? _a : _b;
     }
-    // TODO comment out after finish testing, and uncomment in constructor
-    function set_price(uint price, bool eth) external onlyOwner { // set ETH price in USD
-        if (eth) {
-            _ETH_PRICE = price;
-        } else {
-            _PRICE = price;
-        }
+    
+    // TODO comment out these setters after finish testing, and uncomment in constructor
+    function set_price_eth(uint price) external onlyOwner { // set ETH price in USD
+        _ETH_PRICE = price;
+    }
+    function set_price_xag(uint price) external onlyOwner { // set ETH price in USD
+        _PRICE = price;
     }
     
     // TODO comment out after finish testing, and uncomment in constructor
@@ -590,8 +591,8 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 uint xag_in_usd = _ratio(plunge.work.short.credit, xag_price, WAD);
                 if (xag_in_usd > eth_in_usd) {
                     delta = xag_in_usd - eth_in_usd; // value of credit - msg.value
-                    eth_in_usd = _ratio(most, eth_price, WAD);
-                    attached = _min(eth_in_usd, delta);
+                    eth_in_usd = _ratio(most, eth_price, WAD); // value of already deposited ETH
+                    attached = _min(eth_in_usd, delta); // re-using / re-purposing the variable "attached" 
                     most = _ratio(WAD, attached, xag_price);
                     plunge.work.short.credit -= most; work.short.credit -= most;
                     Plunges[_msgSender()].eth -= _ratio(WAD, attached, eth_price);
@@ -612,7 +613,12 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 eth_in_usd += _ratio(most, eth_price, WAD);
                 delta = _ratio(WAD, eth_in_usd, xag_price);
                 work.long.credit += delta; plunge.work.short.credit += delta;
-            }   
+            }
+            else {
+                Plunges[_msgSender()].eth -= most;
+                Plunges[beneficiary].eth += amount;
+                carry.debit += attached;
+            }  
         }
         Plunges[beneficiary] = plunge;
     }
@@ -716,10 +722,11 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     }
 
     function owe(uint amount, bool short) external payable { // amount is in QD 
+        // TODO ratio should be overall, not just for the last semester
         uint ratio = _MO[SEMESTER].locked * 100 / _MO[SEMESTER].minted; // % backing
         require(block.timestamp >= _MO[0].start + LENT, "MO::owe: early"); 
-        require(ratio > IVERSON && _MO[SEMESTER].minted >= TARGET / 100, 
-        "MO::owe: under-backed");
+        // require(ratio > IVERSON && _MO[SEMESTER].minted >= TARGET / 100, 
+        // "MO::owe: under-backed"); // TODO uncomment before deployment
         uint debit; uint credit; 
         
         uint xag_price = _get_price(false);
