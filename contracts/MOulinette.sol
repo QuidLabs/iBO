@@ -13,7 +13,7 @@ interface IMarenate {
 }
 
 // 
-contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
+contract Moulinette is ERC20, Ownable { IMarenate MA; 
     // TODO if a FRAX balance is detected, frontend should automatically wrap into sFRAX and give allowance to mint()
     // address constant public FRAX = 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32; 
     // same for USDE and DAI
@@ -37,14 +37,15 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     uint constant public PENNY = WAD / 100;
     uint constant public BAG = STACK * 100;
     uint constant public IVERSON = 76; // 76ers...
-    uint constant public MO_CUT = 99 * PENNY / 10; 
+    // Israel celebrates its 76th year anniversary
+    uint constant public MO_CUT = 54 * PENNY / 10; 
     uint constant public MO_FEE = 22 * PENNY / 10; 
     
     uint constant public MIN_CR = WAD + MIN_APR; // 112
     uint constant public MIN_APR = 120000000000000000;
     Offering[16] public _MO; // one !MO per 6 months
     mapping(address => uint[16]) paid; // in stables
-    struct Offering { // 8yr x 544,444,444 stables...
+    struct Offering { // up to 544,444,444 x 8 years
         uint start; // date 
         uint minted; // QD
         uint locked;
@@ -78,7 +79,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     }   mapping (address => Plunge) Plunges; 
     // TODO last price and last timestamp 
     Pod public wind; Piscine public work;
-    address public mock;
+    address public mock; // TODO for testing only
     constructor(address _sdai) ERC20("QU!Dao", "QD") { 
         mock = _sdai;
         _MO[0].start = block.timestamp; 
@@ -146,7 +147,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
     // in _unwind, the ground you stand on balances you...what balances the ground?
     function balanceOf(address account) public view override returns (uint256) {
         return super.balanceOf(account) + _maturing[account].debit +  _maturing[account].credit;
-        // mature QD ^^^^^^^^^ in the process of maturing as ^^^^^ or starting to mature ^^^^^^
+        // mature QD ^^^^^^^^^ is in the process of maturing as ^^^^^ or starting to mature...^^^^^^
     }
     
     // Five helper functions used by frontend (duplicated code)
@@ -265,7 +266,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 //     plunge.work.long.debit = _work.debit;
                 //     plunge.dues.long.debit = block.timestamp + 1 days; 
                 // } else   
-                if (clutch > 1) { // slow drip option
+                if (clutch > 1) { // pro-rated liquidation (eviction)
                     plunge.dues.short.debit = block.timestamp; 
                 }   else { plunge.dues.short.debit = 0; }
             } else { plunge.dues.short.debit = block.timestamp; }   
@@ -291,7 +292,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                         // otherwise can get stuck in an infinite loop
                         // of throwing back & forth between directions
                     // }   else 
-                    if (clutch > 1) { // slow drip option
+                    if (clutch > 1) { // pro-rated liquidation (eviction)
                         plunge.dues.long.debit = block.timestamp; 
                     }   else { plunge.dues.long.debit = 0; }
                 } else { plunge.dues.long.debit = block.timestamp; }  
@@ -303,11 +304,9 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                 ((block.timestamp - plunge.last) / 1 hours) 
                 * balanceOf(addr) / WAD
             ); 
-        
             // carry.credit; // is subtracted from 
             // rebalance fee targets (governance)
             if (plunge.dues.long.credit != 0) { 
-
                 // MA.medianise(plunge.dues.points, 
                 //     plunge.dues.long.credit, old_points, 
                 //     plunge.dues.long.credit, false
@@ -335,8 +334,9 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
             // need to reuse the delta variable (or stack too deep)
             delta = _ratio(price, _work.credit, _work.debit);
             if (delta < WAD) { // liquidatable potentially
+                // TODO pass in the right price
                 (_work, _eth, folded) = _unwind(addr, _work, _eth, 
-                                        clutch, short, price);
+                                            clutch, short, price);
             }  else { // healthy CR, proceed to charge APR
                 // if addr is shorting: indicates a desire
                 // to give priority towards getting rid of
@@ -366,6 +366,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                         _eth -= most; carry.debit -= most;
                         wind.debit += most; // address(MA).call{value: most}(""); // TODO uncomment
                     }   if (dues > 0) { // plunge cannot pay APR (delinquent)
+                            // TODO pass in the right price
                             (_work, _eth, folded) = _unwind(addr, _work, _eth, 
                                                          0, short, price);
                             // zero passed in for clutch ^
@@ -409,6 +410,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
                     if (delta > salve) { delta = in_QD - _work.debit; } 
                     // "It's like inch by inch and step by step...i'm closin'
                     // in on your position and [reconstruction] is my mission"
+                    // TODO tap into maturing.credit and maturing.debt
                     if (salve >= delta) { folded = false; // salvageable...
                         // decrement QD first because ETH is rising
                         in_sol = _ratio(WAD, delta, price);
@@ -642,13 +644,7 @@ contract Moulinette is ERC20, Ownable { IMarenate MA; // ""
             for (uint i = 0; i < SEMESTER; i++) {
                 debt_minted += _MO[SEMESTER].minted;
             }   
-            // the product of time and 
-
-            // stake = collat x total stakes / total collat
-
-            // verify that stake / total stakes has same ratio
-            // as this collat / total collat 
-
+            
             uint total_debt = wind.credit - super.balanceOf(address(this));
             // the contract's balance of QD is not part of circulating supply, so it can be burned 
             // at any time against the total outstanding debt, or used for liquidation protection
